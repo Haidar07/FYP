@@ -17,15 +17,17 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from supermarket_app import views
+from django.conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
+from django.conf.urls.static import static
 
 urlpatterns = [
 
     # Home Page Link
-    path('', views.home_view),
+    path('', views.home_view, name='product_search_home'),
     path('admin/', admin.site.urls),
-    # path('about', views.about),
-    # path('allbooks', views.view_allbooks),
+    path('sortbyname', views.sortbyname),
+    path('sortbyprice', views.sortbyprice),
 
     # # Registration Links
     # path('adminsignup', views.adminsignup_view),
@@ -37,10 +39,11 @@ urlpatterns = [
     # After Login Link
     path('afterlogin', views.afterlogin_view),
 
-    # # Admin Links
-    # path('addbook', views.addbook_view),
-    # path('delete_book/<str:pk>/', views.delete_book, name='delete'),
-    # path('edit_book/<str:pk>/', views.edit_book, name='edit'),
+    # Admin Links
+    path('addproduct', views.addproduct_view),
+    path('success', views.success, name='success'),
+    path('delete_product/<str:pk>/', views.delete_product, name='delete'),
+    path('edit_product/<str:pk>/', views.edit_product, name='edit'),
     # path('viewusers', views.view_users),
     # path('contact', views.contactusers),
 
@@ -50,6 +53,8 @@ urlpatterns = [
     # path('borrowed', views.borrowed_books),
     # path('viewbook', views.afterlogin_view),
 
-    # # Logout Link
-    # path('logout', LogoutView.as_view(template_name='library/index.html')),
+    # Logout Link
+    path('logout', LogoutView.as_view(template_name='home/index.html')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

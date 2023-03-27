@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>H&H Market</title>
+
+
+<style media="screen">
+    table.redTable {
+    border: 2px solid #607d8b;
+    background-color: #EEE7DB;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    }
+    table.redTable td, table.redTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+    }
+    table.redTable tbody td {
+    font-size: 13px;
+    }
+    table.redTable tr:nth-child(even) {
+    background: #ffffff;
+    }
+    table.redTable thead {
+    background: #607d8b;
+    }
+    table.redTable thead th {
+    font-size: 19px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #607d8b;
+    }
+    table.redTable thead th:first-child {
+    border-left: none;
+    }
+    
+    table.redTable tfoot {
+    font-size: 13px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #607d8b;
+    }
+    table.redTable tfoot td {
+    font-size: 13px;
+    }
+    table.redTable tfoot .links {
+    text-align: right;
+    }
+    table.redTable tfoot .links a{
+    display: inline-block;
+    background: #FFFFFF;
+    color: #607d8b;
+    padding: 2px 8px;
+    border-radius: 5px;
+    }
+  </style>
+
+</head>
+<body>
+ {% include "navbars/admin_navbar.html" %}
+<hr>
+
+{% if all_products%}
+<div class="card card-body container">
+    <table class="table table-hover table-condensed table-striped table-bordered">
+        <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Producer</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+            <th>Edit Book</th>
+            <th>Remove</th>
+        </tr>
+        {% for product in all_products %} 
+        <tr>
+            <td>{{product.product_name}}</td>
+            <td>{{product.product_category}}</td>
+            <td>{{product.producer}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{book.image}}</td>
+            <td><a href="{% url 'edit' product.id %}" >Edit</a></td>
+            <td><a href="{% url 'delete' product.id %}" >Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+</div>
+
+</div>
+
+{%else%}
+<br>
+<br>
+<br>
+<h2 class = "text-center p-3 mb-2 bg-danger text-white" >No items available</h2>
+{%endif%}
+
+</div>
+</body>
+</html>

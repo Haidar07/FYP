@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<div style="font-family: 'Roboto', sans-serif; padding-top: 5px; margin-bottom: 0; padding-bottom: 0;">
+    <nav class="navbar navbar-expand-md bg-white">
+        <a class="navbar-brand" href="#">
+            <img src= "{% static "logo.png" %}" class="d-inline-block align-top" alt="" style="height: 100px; padding-left: 3px;">
+        </a>
+      <div>
+        <div class="container-fluid" style="padding-right: 5cm;">
+            <form class="d-flex" method = 'POST' action = "">
+              {% csrf_token %}
+              <label class="align-self-top" style="width: 6cm; padding-top: 10px;" for = "searchby">Search by:</label>
+              <select class=" w-50 form-control" name="searchby">
+                <option value="title">Product Name</option>
+                <option value="author">Brand Name</option>
+                <option value="category">category</option>
+              </select>
+              <div>&nbsp</div>
+              <input class="form-control me-2" name = 'search-result' type="search" placeholder="Search" aria-label="Search">
+        
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            </div>
+        <div  class="collapse navbar-collapse" id="navbarCollapse" style="padding-top: 20px;">
+            <!-- <div class="navbar-nav"> </div>  -->
+            <div class="navbar-nav">
+                <a href="/" ><button type="button" class="btn btn-outline-success">Home</button></a>
+
+                <a href="" ><button type="button" class="btn btn-outline-success">Products</button></a>
+
+                <a href=""><button type="button" class="btn btn-outline-success">Categories</button></a>
+
+                <a href="" ><button type="button" class="btn btn-outline-success">Cart</button></a>
+
+                <a href=""><button type="button" class="btn btn-outline-success">My Orders</button></a>
+
+                <a href=""><button type="button" class="btn btn-outline-success">Favorites</button></a>
+
+                <a href=""><button type="button" class="btn btn-outline-success">New Arrivals</button></a>
+                
+            </div>
+
+            <div class="nav-item dropdown" style = "position:absolute; right:10px; top:80px">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button type="button" class="btn btn-outline-primary">User</button></a>
+              <div class="dropdown-menu">
+                <a href="logout" class="dropdown-item">Logout</a>
+              </div>
+          </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

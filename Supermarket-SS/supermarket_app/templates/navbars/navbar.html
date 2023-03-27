@@ -3,6 +3,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<style>
+li {
+    list-style-type: none;
+    margin-left: 20px;
+}
+</style>
 </head>
 <body>
 
@@ -11,22 +17,21 @@
         <a class="navbar-brand" href="#">
             <img src= "{% static "logo.png" %}" class="d-inline-block align-top" alt="" style="height: 100px; padding-left: 3px;">
         </a>
-      <div>
+        <div>
         <div class="container-fluid" style="padding-right: 5cm;">
-            <form class="d-flex" method = 'POST' action = "">
+            <form class="d-flex" method = 'POST' action = "{% url 'product_search_home' %}">
               {% csrf_token %}
               <label class="align-self-top" style="width: 6cm; padding-top: 10px;" for = "searchby">Search by:</label>
               <select class=" w-50 form-control" name="searchby">
-                <option value="title">Product Name</option>
-                <option value="author">Brand Name</option>
-                <option value="category">category</option>
+                <option value="product_name">product name</option>
+                <option value="product_category">category</option>
               </select>
               <div>&nbsp</div>
               <input class="form-control me-2" name = 'search-result' type="search" placeholder="Search" aria-label="Search">
         
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            </div>
+        </div>
         <div  class="collapse navbar-collapse" id="navbarCollapse" style="padding-top: 20px;">
             <!-- <div class="navbar-nav"> </div>  -->
             <div class="navbar-nav">
@@ -44,14 +49,20 @@
 
                 <a href=""><button type="button" class="btn btn-outline-success">New Arrivals</button></a>
                 
-            </div>
+          </div>
 
-            <div class="navbar-nav " >
-              <a href="./signup"><button type="button" class="btn btn-outline-primary" style="margin-left:100px">Login</button></a>
+              <li class="nav-item dropdown">
+                <a role="button" data-toggle="dropdown"><button type="button" class="btn btn-outline-primary">Sort by</button></a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="sortbyname">Product Name</a>
+                  <a class="dropdown-item" href="sortbyprice">Price</a>
+                </div>
+              </li> 
+            <div class="navbar-nav " style = "position:absolute; right:10px; top:80px" >
+              <a href="./signup"><button type="button" class="btn btn-outline-primary">Login</button></a>
             </div>
         </div>
     </nav>
-</div>
-
+  </div>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<title>M&M Market</title>
+<style>
+    * {
+    box-sizing: border-box;
+    }
+
+    body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    }
+
+    .product {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333333;
+    }
+
+    input[type="text"], select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    }
+
+    .pro {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    }
+
+    button:hover {
+    background-color: #3e8e41;
+    }
+</style>
+</head>
+<body>
+{% include "navbars/admin_navbar.html" %}
+<hr>
+
+<form class="product" method = "post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="pro" type="submit">Add Product</button>
+</form>
+
+</div>
+</body>
+</html>
