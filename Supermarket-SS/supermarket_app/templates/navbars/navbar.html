@@ -12,12 +12,12 @@ li {
 </head>
 <body>
 
-<div style="font-family: 'Roboto', sans-serif; padding-top: 5px; margin-bottom: 0; padding-bottom: 0;">
+<div style="font-family: 'Roboto', sans-serif; padding-top: 5px; margin-bottom: 0; padding-bottom: 0; width: 100vw;">
     <nav class="navbar navbar-expand-md bg-white">
         <a class="navbar-brand" href="#">
-            <img src= "{% static "logo.png" %}" class="d-inline-block align-top" alt="" style="height: 100px; padding-left: 3px;">
+            <img src= "{% static "logo.png" %}" class="d-inline-block align-top" alt="" style="height: 100px; padding-left: 4px;">
         </a>
-        <div>
+        <div> 
         <div class="container-fluid" style="padding-right: 5cm;">
             <form class="d-flex" method = 'POST' action = "{% url 'product_search_home' %}">
               {% csrf_token %}
@@ -34,35 +34,41 @@ li {
         </div>
         <div  class="collapse navbar-collapse" id="navbarCollapse" style="padding-top: 20px;">
             <!-- <div class="navbar-nav"> </div>  -->
-            <div class="navbar-nav">
+            <div class="navbar-nav" style="gap: 10px;">
                 <a href="/" ><button type="button" class="btn btn-outline-success">Home</button></a>
 
-                <a href="" ><button type="button" class="btn btn-outline-success">Products</button></a>
+                <a href="../../show_cart" ><button type="button" class="btn btn-outline-success">Cart</button></a>
 
-                <a href=""><button type="button" class="btn btn-outline-success">Categories</button></a>
+                <a href="../../show_favorites"><button type="button" class="btn btn-outline-success">Favorites</button></a>
 
-                <a href="" ><button type="button" class="btn btn-outline-success">Cart</button></a>
-
-                <a href=""><button type="button" class="btn btn-outline-success">My Orders</button></a>
-
-                <a href=""><button type="button" class="btn btn-outline-success">Favorites</button></a>
-
-                <a href=""><button type="button" class="btn btn-outline-success">New Arrivals</button></a>
+                <a href="../../new_arrivals"><button type="button" class="btn btn-outline-success">New Arrivals</button></a>
                 
           </div>
-
+          <div style = "position:absolute; right:160px">
               <li class="nav-item dropdown">
                 <a role="button" data-toggle="dropdown"><button type="button" class="btn btn-outline-primary">Sort by</button></a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="sortbyname">Product Name</a>
-                  <a class="dropdown-item" href="sortbyprice">Price</a>
+                  <a class="dropdown-item" href="../sortbyname">Product Name</a>
+                  <a class="dropdown-item" href="../sortbyprice">Price</a>
                 </div>
               </li> 
-            <div class="navbar-nav " style = "position:absolute; right:10px; top:80px" >
+            </div>
+            <div class="navbar-nav " style = "position:absolute; right:40px" >
               <a href="./signup"><button type="button" class="btn btn-outline-primary">Login</button></a>
             </div>
         </div>
     </nav>
   </div>
+
+{% include "common/messages.html" %}
+
+<script>
+  setTimeout(function(){
+    if ($('#msg').length > 0) {
+      $('#msg').remove();
+    }
+  }, 2000)
+</script> 
+
 </body>
 </html>

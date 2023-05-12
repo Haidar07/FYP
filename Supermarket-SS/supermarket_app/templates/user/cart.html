@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>H&H Market</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
+</head>
+<body>
+
+{% include "navbars/user_navbar.html" %}
+<hr>
+
+{% if orders %}
+{% csrf_token %}
+    
+    <table class="table table-striped" style="width: 50%; margin-left: 25%;">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        {% for product in orders %} 
+          <tr>
+            <th scope="row"></th>
+            <td>{{product.product_id.product_name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>$ {% widthratio product.product_id.price 1 product.quantity %}</td>
+            <td style="font-size: small;"><a href="{% url 'remove_from_cart' product.id %}">Remove</a></td>
+          </tr>
+        {%endfor%} 
+        <tr style="background-color: rgb(255, 255, 255);">
+            <th scope="row">Total Price</th>
+            <td></td>
+            <td></td>
+            <td>$ {{cart.price}}</td>
+          </tr>
+          <tr style="background-color: rgb(255, 255, 255);">
+            <th></th>
+            <td></td>
+            <td><a href="">Checkout</a></td>
+            <td></td>
+          </tr>
+      </tbody>
+
+  </div>
+{%endif%}
+
+
+</body>
+</html>

@@ -1,70 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
-
-
-ul {
-    list-style: none;
+<style media="screen">
+        *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  body{
+      background: #fcfcfc;
+      font-family: sans-serif;
+  }
+  footer{
+      position: relative;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #111;
+      height: auto;
+      width: 100vw;
+  
+      padding-top: 40px;
+      color: #fff;
+  }
+  .footer-content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+  }
+  .footer-content h3{
+      font-size: 2.1rem;
+      font-weight: 500;
+      text-transform: capitalize;
+      line-height: 3rem;
+  }
+  .footer-content p{
+      max-width: 500px;
+      margin: 10px auto;
+      line-height: 28px;
+      font-size: 14px;
+      color: #cacdd2;
+  }
+  .socials{
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0 3rem 0;
+  }
+  .socials li{
+      margin: 0 10px;
+  }
+  .socials a{
+      text-decoration: none;
+      color: #fff;
+      border: 1.1px solid white;
+      padding: 5px;
+  
+      border-radius: 50%;
+  
+  }
+  .socials a i{
+      font-size: 1.1rem;
+      width: 20px;
+  
+  
+      transition: color .4s ease;
+  
+  }
+  .socials a:hover i{
+      color: aqua;
+  }
+  
+  .footer-bottom{
+      background: #000;
+      width: 100vw;
+      padding: 20px;
+  padding-bottom: 40px;
+      text-align: center;
+  }
+  .footer-bottom p{
+  float: left;
+      font-size: 14px;
+      word-spacing: 2px;
+      text-transform: capitalize;
+  }
+  .footer-bottom p a{
+    color:#44bae8;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  .footer-bottom span{
+      text-transform: uppercase;
+      opacity: .4;
+      font-weight: 200;
+  }
+  .footer-menu{
+    float: right;
+  
+  }
+  .footer-menu ul{
     display: flex;
-}
-
-.social-icon {
-    height: 70px;
-    width: 70px;
+  }
+  .footer-menu ul li{
+  padding-right: 10px;
+  display: block;
+  }
+  .footer-menu ul li a{
+    color: #cfd2d6;
+    text-decoration: none;
+  }
+  .footer-menu ul li a:hover{
+    color: #27bcda;
+  }
+  
+  @media (max-width:500px) {
+  .footer-menu ul{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 27px;
-    margin-right: 11px;
-    cursor: pointer
-}
-
-.social-twitter {
-    background-color: #55acee
-}
-
-.social-facebook {
-    background-color: #3b5999
-}
-
-.social-linkedin {
-    background-color: #0077B5
-}
-
-.social-google {
-    background-color: #dd4b39
-}
-
-.social-instagram {
-    background-color: #dd4b39
-}
-
-.social-icon i {
-    transition: 0.4s all
-}
-
-.social-icon:hover i {
-    transform: scale(1.4)
-}
-
-
-</style>
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  }
+      </style>
 </head>
 <body>
-  <div class="d-flex flex-column align-items-center">
-    <h4 class="mb-4">Follow us</h4>
-    <ul>
-        <li><span class="social-icon social-facebook"><i class="fa fa-facebook"></i></span></li>
-        <li><span class="social-icon social-google"><i class="fa fa-google"></i></span></li>
-        <li><span class="social-icon social-linkedin"><i class="fa fa-linkedin"></i></span></li>
-        <li><span class="social-icon social-instagram"><i class="fa fa-instagram"></i></span></li>
-        <li><span class="social-icon social-twitter"><i class="fa fa-twitter"></i></span></li>
-    </ul>
+    <footer>
+        <div class="footer-content">
+            <h3>Welcome to H&H Market</h3>
+            <p>You can visit our supermarket at any time from 6:00 am t0 12:00pm. our branches are located in Hamra, Jbeil, Hermel, Nabatieh</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy; <a href="#">Haidar Yasine & Houssien Al Fakih</a>  </p>
+        </div>
+
+    </footer>
   </div>
 </body>
 </html>

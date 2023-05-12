@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>H&H Market</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+{% include "navbars/navbar.html" %}
+
+<hr>
+
+{% if all_products %}
+{% csrf_token %}
+
+<div class="products">
+    
+  {% for product in all_products %} 
+
+  <div class="product">
+    <div class="card-img-overlay d-flex justify-content-end" style="top: 300px; right: 20px;">
+      <a href="{% url 'add_fav' product.id %}" class="card-link text-danger like">
+        <i class="hvr fa-regular fa-heart"></i>
+      </a>
+    </div>
+      <div class="image">
+        <a style="position: relative;" href="{% url 'display' product.id %}">
+          <img src="{{product.image.url}}" alt="">
+        </a>
+      </div>
+      
+      <div class="namePrice">
+          <h3>{{product.product_name}}</h3>
+          <span>$ {{product.price}}</span>
+      </div>
+      <p style="line-height: 1;"> Brand: ddfd</p>
+      {% if product.quantity > 0 %}
+      <p style="color: rgb(1, 144, 1); line-height: 0;" >Available</p>
+      {%else%}
+      <p style="color: rgb(164, 1, 1);  line-height: 0;">Out of Stock</p>
+      {%endif%}
+      <div class="stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+      </div>
+
+      <nav>
+        <form id="form2" method="POST" action="add_to_cart">{% csrf_token %}
+        <label for="quantity" style="font-size: 12pt;">Quantity:</label>
+        <div class="quantity">
+          <input name="quantity" type="number" min="1" max="9" step="1" value="1">
+        </div>
+        <input name="usr" type="hidden" value="{{product.id}}">
+      </form>
+        <div class="bay">
+          <button type="submit" name="qnt" form="form2" value="submit"> ADD <i class="fa fa-shopping-cart"></i> </button>
+      </div>
+      </nav>
+    
+    </div>
+
+  {%endfor%} 
+</div>
+{%else%}
+  <center><h3 style="height: 50vh;">No Items</h3></center>
+{%endif%}
+
+
+<script src="{% static 'js/all.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+<script>
+    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+  jQuery('.quantity').each(function() {
+    var spinner = jQuery(this),
+      input = spinner.find('input[type="number"]'),
+      btnUp = spinner.find('.quantity-up'),
+      btnDown = spinner.find('.quantity-down'),
+      min = input.attr('min'),
+      max = input.attr('max');
+
+    btnUp.click(function() {
+      var oldValue = parseFloat(input.val());
+      if (oldValue >= max) {
+        var newVal = oldValue;
+      } else {
+        var newVal = oldValue + 1;
+      }
+      spinner.find("input").val(newVal);
+      spinner.find("input").trigger("change");
+    });
+
+    btnDown.click(function() {
+      var oldValue = parseFloat(input.val());
+      if (oldValue <= min) {
+        var newVal = oldValue;
+      } else {
+        var newVal = oldValue - 1;
+      }
+      spinner.find("input").val(newVal);
+      spinner.find("input").trigger("change");
+    });
+
+  });
+</script>
+</body>
+</html>

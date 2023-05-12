@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('sortbyname', views.sortbyname),
     path('sortbyprice', views.sortbyprice),
+    path('new_arrivals', views.new_arrivals),
 
     # # Registration Links
     # path('adminsignup', views.adminsignup_view),
@@ -47,14 +48,23 @@ urlpatterns = [
     # path('viewusers', views.view_users),
     # path('contact', views.contactusers),
 
-    # # User Links
-    # path('borrow/<str:pk>/', views.borrow_book, name='borrow'),
-    # path('return/<str:pk>/', views.return_book, name='return'),
-    # path('borrowed', views.borrowed_books),
-    # path('viewbook', views.afterlogin_view),
+    # User Links
+    path('display_product/<str:pk>/',
+         views.display_product, name='display'),
+    path('add_favorite/<int:pk>/', views.add_to_favorites, name='add_fav'),
+    path('show_favorites', views.show_favorites),
+    path('remove_favorite/<int:pk>/',
+         views.remove_favorite, name='remove_favorite'),
+    path('add_to_cart/<pk1>/',
+         views.add_to_cart, name="add"),
+    path('remove_from_cart/<int:pk>/',
+         views.remove_from_cart, name='remove_from_cart'),
+    path('show_cart', views.show_cart),
+    path('my_account', views.view_account),
+    path('change_password', views.password_template),
 
     # Logout Link
-    path('logout', LogoutView.as_view(template_name='home/index.html')),
+    path('logout', LogoutView.as_view(next_page='/')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

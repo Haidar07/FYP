@@ -19,7 +19,7 @@
         <a class="navbar-brand" href="#">
             <img src= "{% static "logo.png" %}" class="d-inline-block align-top" alt="" style="height: 100px; padding-left: 3px;">
         </a>
-      <div>
+      <div> 
         <div class="container-fluid" style="padding-right: 5cm;">
             <form class="d-flex" method = 'POST' action = "">
               {% csrf_token %}
@@ -42,11 +42,7 @@
 
                 <a href="addproduct" ><button type="button" class="btn btn-outline-success">Add Product</button></a>
 
-                <a href=""><button type="button" class="btn btn-outline-success">Customers</button></a>
-
                 <!-- <a href="" ><button type="button" class="btn btn-outline-success">Cart</button></a> -->
-
-                <a href=""><button type="button" class="btn btn-outline-success">All Orders</button></a>
 
                 <!-- <a href=""><button type="button" class="btn btn-outline-success">Favorites</button></a>
 
@@ -57,7 +53,7 @@
             <div class="nav-item dropdown" style = "position:absolute; right:10px; top:80px">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button type="button" class="btn btn-outline-primary">Admin</button></a>
                 <div class="dropdown-menu">
-                  <a href="logout" class="dropdown-item">Logout</a>
+                  <a href="../../logout" class="dropdown-item">Logout</a>
                 </div>
             </div>
 <!-- 

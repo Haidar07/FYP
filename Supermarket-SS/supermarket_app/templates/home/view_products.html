@@ -4,75 +4,116 @@
 <meta charset="utf-8">
 <title>H&H Market</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 
-<style>
-  .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  text-align: center;
-  font-family: arial;
-  font-size: 16px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-
-}
-
-
-.card button {
-  border: none;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-
-}
-
-#container {
-  position: relative;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  margin-left: 40px;
-  margin-right: 40px;
-  
-}
-
-.card button:hover {
-  opacity: 0.7;
-}
-
-</style>
-
-<body>
+<body class="pbody">
 
 {% if all_products %}
-{% csrf_token %}
+  {% csrf_token %}
 
-<div id="container" >
-  {% for product in all_products %}
-  <div class="card col-sm-2">
-    <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{product.product_name}}</h5>
-      <p class="card-text mb-0">$ {{product.price}}</p>
-      <p class="card-text mb-0">{{product.quantity}} items available</p>
-      <p class="card-text">{{product.producer}}</p>
-      <p class="mb-0"><button>Add to Cart</button></p>
-    </div>
+  <div class="products">
+    
+    {% for product in all_products %} 
+
+    <div class="product">
+        <div class="card-img-overlay d-flex justify-content-end" style="top: 300px; right: 20px;">
+          <a href="{% url 'add_fav' product.id %}" class="card-link text-danger like">
+            <i class="hvr fa-regular fa-heart"></i>
+          </a>
+        </div>
+        <div class="image">
+          <a style="position: relative;" href="{% url 'display' product.id %}">
+            <img src="{{product.image.url}}" alt="">
+          </a>
+        </div>
+        
+        <div class="namePrice">
+            <h3>{{product.product_name}}</h3>
+            <span>$ {{product.price}}</span>
+        </div>
+        <p style="line-height: 1;"> Brand: ddfd</p>
+        {% if product.quantity > 0 %}
+        <p style="color: rgb(1, 144, 1); line-height: 0;" >Available</p>
+        {%else%}
+        <p style="color: rgb(164, 1, 1); line-height: 0;">Out of Stock</p>
+        {%endif%}
+        <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+        </div>
+
+        <nav>
+          <label style="font-size: 12pt;">Quantity: {{product.id}}</label>
+          <div class="quantity">
+            <input id="quantity" name="quantity" type="number" min="1" step="1" value="1">
+          </div>
+          <div class="bay">
+          <a id="qnt" href="{% url 'add' product.id %}" ><button> ADD <i class="fa fa-shopping-cart"></i></button></a>
+        </div>
+        </nav>
+      
+      </div>
+
+    {%endfor%} 
   </div>
-  {%endfor%}
-</div>
-
 
 {%else%}
-<center><h1>No Products in the Shop</h1></center>
+  <center><h3 style="height: 50vh;">No Items</h3></center>
+
 {%endif%}
+
+<script src="{% static 'js/all.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+<script>
+      jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    jQuery('.quantity').each(function() {
+      var spinner = jQuery(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+    });
+
+    // function submitQuantity(prod_id) {
+    //   var quantity = document.getElementById("quantity_" + prod_id).value;
+    //   document.getElementById("qnt_" + prod_id).href = "add_to_cart/1/2";
+    // }
+</script>
 
 </body>
 </html>

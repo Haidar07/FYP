@@ -73,7 +73,7 @@
             <th>Producer</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Image</th>
+            <th>Date Added</th>
             <th>Edit Book</th>
             <th>Remove</th>
         </tr>
@@ -84,7 +84,7 @@
             <td>{{product.producer}}</td>
             <td>{{product.price}}</td>
             <td>{{product.quantity}}</td>
-            <td>{{book.image}}</td>
+            <td>{{product.date_added}}</td>
             <td><a href="{% url 'edit' product.id %}" >Edit</a></td>
             <td><a href="{% url 'delete' product.id %}" >Delete</a></td>
         </tr>
